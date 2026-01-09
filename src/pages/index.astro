@@ -1,0 +1,284 @@
+---
+import BaseLayout from "../layouts/BaseLayout.astro";
+import logo from "../assets/logo.png";
+import tomPortrait from "../assets/tom-woodhouse.jpeg";
+import yumiNutrition from "../assets/yumi-nutrition.png";
+import fixMyBrokenMac from "../assets/fmbm.jpg";
+import wolffLaundry from "../assets/wolf.png";
+import dabbaDrop from "../assets/Dabba.png";
+
+const stats = [
+  { label: "Years of experience", value: "11" },
+  { label: "Focus", value: "CRO-led builds" },
+  { label: "Platforms", value: "Shopify + WordPress" },
+];
+
+const projects = [
+  {
+    name: "Yumi Nutrition",
+    description: "Shopify Plus development for a fast-growing nutrition brand.",
+    result: "Shopify Plus development",
+    image: yumiNutrition,
+  },
+  {
+    name: "Fix My Broken Mac",
+    description: "Conversion-focused site refresh for a repair service brand.",
+    result: "WordPress development",
+    image: fixMyBrokenMac,
+  },
+  {
+    name: "Wolff Laundry",
+    description: "WooCommerce development for a streamlined ecommerce experience.",
+    result: "WooCommerce development",
+    image: wolffLaundry,
+  },
+  {
+    name: "DabbaDrop",
+    description: "Shopify development for an optimized, responsive storefront.",
+    result: "Shopify development",
+    image: dabbaDrop,
+  },
+];
+
+const services = [
+  {
+    title: "Web Design",
+    detail: "Crafting visually stunning websites that captivate audiences and drive conversions.",
+  },
+  {
+    title: "Conversion Optimization",
+    detail: "Optimizing your website to turn more visitors into paying customers.",
+  },
+  {
+    title: "Responsive Development",
+    detail: "Building sites that adapt seamlessly across devices for a polished user experience.",
+  },
+];
+
+const process = [
+  {
+    step: "01",
+    title: "Consultation",
+    detail: "In-depth discussions to clarify goals, audience, and conversion priorities.",
+  },
+  {
+    step: "02",
+    title: "Choose your design",
+    detail: "Tailor-made packages crafted to align with your business and branding.",
+  },
+  {
+    step: "03",
+    title: "Development",
+    detail: "Full rebuilds or targeted upgrades with performance and usability in mind.",
+  },
+  {
+    step: "04",
+    title: "Launch + optimize",
+    detail: "QA, deployment, and ongoing improvements to keep conversions climbing.",
+  },
+];
+
+const stack = ["Shopify", "Shopify Plus", "WordPress", "WooCommerce", "CRO", "UX", "Performance"];
+---
+
+<BaseLayout title="Tom Woodhouse - Freelance Web Developer & CRO Consultant">
+  <main class="page">
+    <nav class="nav">
+      <div class="logo">
+        <img src={logo.src} alt="Tom Woodhouse logo" width="160" height="48" loading="eager" />
+      </div>
+      <div class="nav__links">
+        <a href="#work">Work</a>
+        <a href="#services">Services</a>
+        <a href="#process">Process</a>
+        <a href="#contact" class="btn ghost small">Book a call</a>
+      </div>
+    </nav>
+    <header class="hero">
+      <div class="hero__content">
+        <p class="eyebrow">Freelance Web Developer - CRO Consultant</p>
+        <h1>Crafting high-converting websites with precision.</h1>
+        <p class="lead">
+          I help brands turn more visitors into customers through thoughtful design, clean
+          development, and conversion-focused strategy.
+        </p>
+        <div class="hero__actions">
+          <a class="btn primary" href="#contact">Book a call</a>
+          <a class="btn ghost" href="#work">View work</a>
+        </div>
+        <div class="hero__stats">
+          {stats.map((stat) => (
+            <div class="stat">
+              <span>{stat.value}</span>
+              <p>{stat.label}</p>
+            </div>
+          ))}
+        </div>
+      </div>
+      <div class="hero__visual">
+        <div class="hero__portrait">
+          <img src={tomPortrait.src} alt="Portrait of Tom Woodhouse" loading="eager" />
+        </div>
+        <div class="card">
+          <p>Availability - Booking now</p>
+          <h3>New projects and optimization sprints</h3>
+          <div class="pulse">
+            <span></span>
+            <span></span>
+            <span></span>
+          </div>
+        </div>
+        <div class="orbit">
+          <div class="orb orb--lg"></div>
+          <div class="orb orb--md"></div>
+          <div class="orb orb--sm"></div>
+        </div>
+      </div>
+    </header>
+
+    <section class="marquee" aria-label="Platforms and focus areas">
+      <div class="marquee__inner">
+        <span>Shopify</span>
+        <span>Shopify Plus</span>
+        <span>WooCommerce</span>
+        <span>WordPress</span>
+        <span>Conversion Rate Optimization</span>
+        <span>Performance</span>
+        <span>Shopify</span>
+        <span>Shopify Plus</span>
+      </div>
+    </section>
+
+    <section class="section" id="work">
+      <div class="section__title">
+        <p class="eyebrow">Latest work</p>
+        <h2>Recent projects focused on performance and conversions.</h2>
+      </div>
+      <div class="grid">
+        {projects.map((project) => (
+          <article class="project-card">
+            {project.image && (
+              <div class="project-card__media">
+                <img src={project.image.src} alt={`${project.name} preview`} loading="lazy" />
+              </div>
+            )}
+            <h3>{project.name}</h3>
+            <p>{project.description}</p>
+            <span>{project.result}</span>
+          </article>
+        ))}
+      </div>
+    </section>
+
+    <section class="section section--split" id="services">
+      <div>
+        <p class="eyebrow">Services</p>
+        <h2>Design, development, and CRO to elevate your online presence.</h2>
+        <p class="body">
+          I work with founders and teams who want a site that looks sharp, loads fast, and
+          converts consistently.
+        </p>
+      </div>
+      <div class="stack">
+        {services.map((service) => (
+          <div class="service">
+            <h3>{service.title}</h3>
+            <p>{service.detail}</p>
+          </div>
+        ))}
+      </div>
+    </section>
+
+    <section class="section section--split" id="process">
+      <div>
+        <p class="eyebrow">Process</p>
+        <h2>A streamlined process from discovery to launch.</h2>
+        <p class="body">
+          Clear steps, fast feedback, and measurable outcomes at every stage.
+        </p>
+        <div class="stack chips">
+          {stack.map((item) => (
+            <span class="chip">{item}</span>
+          ))}
+        </div>
+      </div>
+      <div class="stack process">
+        {process.map((item) => (
+          <div class="service">
+            <span class="step">{item.step}</span>
+            <h3>{item.title}</h3>
+            <p>{item.detail}</p>
+          </div>
+        ))}
+      </div>
+    </section>
+
+    <section class="section testimonials">
+      <div>
+        <p class="eyebrow">Client testimonials</p>
+        <h2>"Tom is a fantastic developer. We would recommend using him again."</h2>
+      </div>
+      <div class="quote">
+        <p>
+          "Overall Tom was a pleasure to work with, communicated well, worked hard and we were
+          left with a Shopify reskin which was almost identical to our mock ups for a very
+          reasonable price."
+        </p>
+        <span>- Sean Knowles</span>
+      </div>
+    </section>
+
+    <section class="section contact" id="contact">
+      <div>
+        <p class="eyebrow">Ready to start?</p>
+        <h2>Ready to enhance your website?</h2>
+        <p class="body">
+          Share your goals and I will outline the best next step for your site.
+        </p>
+      </div>
+      <form
+        class="contact__form"
+        name="contact"
+        method="POST"
+        data-netlify="true"
+        netlify-honeypot="bot-field"
+      >
+        <input type="hidden" name="form-name" value="contact" />
+        <p class="visually-hidden">
+          <label>
+            Don't fill this out if you're human: <input name="bot-field" />
+          </label>
+        </p>
+        <label>
+          Name
+          <input type="text" name="name" placeholder="Your name" required />
+        </label>
+        <label>
+          Email
+          <input type="email" name="email" placeholder="you@company.com" required />
+        </label>
+        <label>
+          Project vision
+          <textarea
+            name="message"
+            placeholder="Tell me about the launch you're planning"
+            required
+          ></textarea>
+        </label>
+        <button class="btn primary" type="submit">Send inquiry</button>
+      </form>
+    </section>
+
+    <footer class="footer">
+      <div>
+        <h3>Tom Woodhouse</h3>
+        <p class="body">Freelance web developer and CRO consultant.</p>
+      </div>
+      <div class="footer__links">
+        <a href="mailto:tom@tom-woodhouse.com">tom@tom-woodhouse.com</a>
+        <a href="#work">Latest work</a>
+        <a href="#contact">Book a call</a>
+      </div>
+    </footer>
+  </main>
+</BaseLayout>
