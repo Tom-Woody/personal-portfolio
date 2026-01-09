@@ -478,6 +478,17 @@ a {
   resize: vertical;
 }
 
+.thanks {
+  display: grid;
+  place-items: center;
+  min-height: 50vh;
+  text-align: center;
+}
+
+.thanks a {
+  text-decoration: underline;
+}
+
 .footer {
   display: flex;
   flex-wrap: wrap;
