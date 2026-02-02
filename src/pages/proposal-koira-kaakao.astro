@@ -1,0 +1,397 @@
+---
+import BaseLayout from "../layouts/BaseLayout.astro";
+import logo from "../assets/logo.png";
+
+const projectDetails = {
+  client: "Koira Kaakao",
+  contact: "Derek",
+  date: "January 2025",
+  projectType: "Shopify Theme Customization",
+};
+
+const scope = [
+  {
+    title: "Theme Customization",
+    description: "Customize the existing Troop Themes template to align with Koira Kaakao's brand identity and packaging design.",
+  },
+  {
+    title: "Visual Cohesion",
+    description: "Implement a consistent look and feel across all pages, ensuring the website reflects the premium drinking chocolate brand aesthetic.",
+  },
+  {
+    title: "Product Setup",
+    description: "Configure and style product pages for 3 drinking chocolate flavors and 1 mug, optimized for conversion.",
+  },
+  {
+    title: "Responsive Design",
+    description: "Ensure the customized theme looks polished and functions flawlessly across all devices.",
+  },
+];
+
+const deliverables = [
+  "Custom homepage design aligned with brand packaging",
+  "Styled product pages for all 4 products",
+  "Custom color scheme and typography implementation",
+  "Navigation and footer customization",
+  "Mobile-responsive adjustments",
+  "Basic SEO setup for launch readiness",
+];
+
+const process = [
+  {
+    step: "01",
+    title: "Brand Review",
+    detail: "Review your brand guidelines, packaging design, and Shopify store to understand the visual direction.",
+    timeline: "Day 1-2",
+  },
+  {
+    step: "02",
+    title: "Design Mockups",
+    detail: "Create visual mockups showing the proposed customizations before implementation.",
+    timeline: "Day 3-5",
+  },
+  {
+    step: "03",
+    title: "Development",
+    detail: "Implement approved designs within the Troop Themes framework, customizing CSS and Liquid templates.",
+    timeline: "Day 6-10",
+  },
+  {
+    step: "04",
+    title: "Review & Launch",
+    detail: "Final review with you, adjustments based on feedback, and launch support.",
+    timeline: "Day 11-14",
+  },
+];
+
+const pricing = {
+  total: "£800 - £1,200",
+  breakdown: [
+    { item: "Theme Customization & Brand Integration", price: "£500 - £750" },
+    { item: "Product Page Styling (4 products)", price: "£150 - £225" },
+    { item: "Responsive Optimization", price: "£150 - £225" },
+  ],
+  notes: "Final quote depends on complexity of brand guidelines and desired customization depth. Payment: 50% upfront, 50% on completion.",
+};
+---
+
+<BaseLayout title="Proposal - Koira Kaakao | Tom Woodhouse">
+  <main class="page proposal">
+    <nav class="nav">
+      <div class="logo">
+        <a href="/">
+          <img src={logo.src} alt="Tom Woodhouse logo" width="160" height="48" loading="eager" />
+        </a>
+      </div>
+      <input id="nav-toggle" class="nav__toggle" type="checkbox" />
+      <label class="nav__toggle-btn" for="nav-toggle" aria-label="Toggle navigation">
+        <span></span>
+        <span></span>
+        <span></span>
+      </label>
+      <div class="nav__links">
+        <a href="/#work">Work</a>
+        <a href="/#services">Services</a>
+        <a href="/#process">Process</a>
+        <a href="/#contact" class="btn ghost small">Book a call</a>
+      </div>
+    </nav>
+
+    <header class="proposal__hero">
+      <div class="proposal__hero-content">
+        <p class="eyebrow">Project Proposal</p>
+        <h1>Koira Kaakao</h1>
+        <p class="lead">
+          Shopify theme customization to bring your premium drinking chocolate brand to life online.
+        </p>
+        <div class="proposal__meta">
+          <div class="proposal__meta-item">
+            <span class="label">Client</span>
+            <span class="value">{projectDetails.contact}</span>
+          </div>
+          <div class="proposal__meta-item">
+            <span class="label">Date</span>
+            <span class="value">{projectDetails.date}</span>
+          </div>
+          <div class="proposal__meta-item">
+            <span class="label">Project</span>
+            <span class="value">{projectDetails.projectType}</span>
+          </div>
+        </div>
+      </div>
+    </header>
+
+    <section class="section" id="overview">
+      <div class="section__title">
+        <p class="eyebrow">Project Overview</p>
+        <h2>Creating a cohesive online presence for your drinking chocolate brand.</h2>
+      </div>
+      <div class="proposal__overview">
+        <p class="body">
+          Based on our conversation, you're looking to customize your Troop Themes Shopify template to create a cohesive brand experience that aligns with your packaging design. With 3 drinking chocolate flavors and 1 mug to showcase, we'll create a clean, premium storefront that converts visitors into customers.
+        </p>
+        <p class="body">
+          This proposal outlines the scope, process, and investment for bringing your vision to life.
+        </p>
+      </div>
+    </section>
+
+    <section class="section section--split" id="scope">
+      <div>
+        <p class="eyebrow">Scope of Work</p>
+        <h2>What's included in this project.</h2>
+        <p class="body">
+          A focused engagement to transform your Shopify store into a brand-aligned experience.
+        </p>
+      </div>
+      <div class="stack">
+        {scope.map((item) => (
+          <div class="service">
+            <h3>{item.title}</h3>
+            <p>{item.description}</p>
+          </div>
+        ))}
+      </div>
+    </section>
+
+    <section class="section" id="deliverables">
+      <div class="section__title">
+        <p class="eyebrow">Deliverables</p>
+        <h2>What you'll receive.</h2>
+      </div>
+      <div class="deliverables-grid">
+        {deliverables.map((item) => (
+          <div class="deliverable">
+            <span class="deliverable__check">✓</span>
+            <p>{item}</p>
+          </div>
+        ))}
+      </div>
+    </section>
+
+    <section class="section section--split" id="process">
+      <div>
+        <p class="eyebrow">Timeline</p>
+        <h2>A clear path from start to launch.</h2>
+        <p class="body">
+          Estimated project duration: 2 weeks from kickoff to launch.
+        </p>
+      </div>
+      <div class="stack process">
+        {process.map((item) => (
+          <div class="service">
+            <div class="process__header">
+              <span class="step">{item.step}</span>
+              <span class="timeline">{item.timeline}</span>
+            </div>
+            <h3>{item.title}</h3>
+            <p>{item.detail}</p>
+          </div>
+        ))}
+      </div>
+    </section>
+
+    <section class="section" id="investment">
+      <div class="section__title">
+        <p class="eyebrow">Investment</p>
+        <h2>Project pricing.</h2>
+      </div>
+      <div class="pricing">
+        <div class="pricing__breakdown">
+          {pricing.breakdown.map((item) => (
+            <div class="pricing__item">
+              <span class="pricing__label">{item.item}</span>
+              <span class="pricing__price">{item.price}</span>
+            </div>
+          ))}
+          <div class="pricing__total">
+            <span class="pricing__label">Total Investment</span>
+            <span class="pricing__price">{pricing.total}</span>
+          </div>
+        </div>
+        <p class="pricing__notes">{pricing.notes}</p>
+      </div>
+    </section>
+
+    <footer class="footer">
+      <div>
+        <h3>Tom Woodhouse</h3>
+        <p class="body">Freelance web developer and CRO consultant.</p>
+      </div>
+      <div class="footer__links">
+        <a href="mailto:tom@tom-woodhouse.com">tom@tom-woodhouse.com</a>
+        <a href="/#work">Latest work</a>
+        <a href="/#contact">Book a call</a>
+      </div>
+    </footer>
+  </main>
+</BaseLayout>
+
+<style>
+  .proposal__hero {
+    text-align: center;
+    max-width: 48rem;
+    margin: 0 auto;
+    padding: 2rem 0 4rem;
+  }
+
+  .proposal__hero h1 {
+    font-family: "Space Grotesk", sans-serif;
+    font-size: clamp(2.8rem, 5vw, 4.8rem);
+    line-height: 1.05;
+    margin: 0 0 1.5rem;
+    background: linear-gradient(120deg, #f4f3f6, #62d4ff);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+  }
+
+  .proposal__meta {
+    display: flex;
+    justify-content: center;
+    gap: 2rem;
+    flex-wrap: wrap;
+    margin-top: 2.5rem;
+    padding-top: 2rem;
+    border-top: 1px solid rgba(255, 255, 255, 0.1);
+  }
+
+  .proposal__meta-item {
+    display: flex;
+    flex-direction: column;
+    gap: 0.4rem;
+  }
+
+  .proposal__meta-item .label {
+    font-size: 0.75rem;
+    text-transform: uppercase;
+    letter-spacing: 0.2em;
+    color: rgba(244, 243, 246, 0.5);
+  }
+
+  .proposal__meta-item .value {
+    font-weight: 600;
+    color: #f4f3f6;
+  }
+
+  .proposal__overview {
+    max-width: 48rem;
+  }
+
+  .proposal__overview .body {
+    margin-bottom: 1rem;
+  }
+
+  .deliverables-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: 1rem;
+  }
+
+  .deliverable {
+    display: flex;
+    align-items: flex-start;
+    gap: 1rem;
+    padding: 1.2rem 1.4rem;
+    border-radius: 1rem;
+    background: rgba(255, 255, 255, 0.03);
+    border: 1px solid rgba(255, 255, 255, 0.08);
+  }
+
+  .deliverable__check {
+    color: #62d4ff;
+    font-weight: 700;
+    font-size: 1.1rem;
+    flex-shrink: 0;
+  }
+
+  .deliverable p {
+    margin: 0;
+    color: rgba(244, 243, 246, 0.85);
+  }
+
+  .process__header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 0.5rem;
+  }
+
+  .timeline {
+    font-size: 0.8rem;
+    color: rgba(98, 212, 255, 0.8);
+    padding: 0.3rem 0.7rem;
+    border-radius: 999px;
+    background: rgba(98, 212, 255, 0.1);
+    border: 1px solid rgba(98, 212, 255, 0.2);
+  }
+
+  .pricing {
+    max-width: 32rem;
+  }
+
+  .pricing__breakdown {
+    padding: 2rem;
+    border-radius: 1.5rem;
+    background: rgba(255, 255, 255, 0.04);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+  }
+
+  .pricing__item {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 1rem 0;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.06);
+  }
+
+  .pricing__item:last-of-type {
+    border-bottom: none;
+  }
+
+  .pricing__total {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 1.5rem 0 0;
+    margin-top: 1rem;
+    border-top: 1px solid rgba(98, 212, 255, 0.3);
+  }
+
+  .pricing__total .pricing__label {
+    font-weight: 600;
+    color: #f4f3f6;
+  }
+
+  .pricing__total .pricing__price {
+    font-size: 1.4rem;
+    font-weight: 700;
+    background: linear-gradient(120deg, #8b6bff, #62d4ff);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+  }
+
+  .pricing__label {
+    color: rgba(244, 243, 246, 0.7);
+  }
+
+  .pricing__price {
+    font-weight: 600;
+    color: #f4f3f6;
+  }
+
+  .pricing__notes {
+    margin-top: 1.5rem;
+    font-size: 0.9rem;
+    color: rgba(244, 243, 246, 0.6);
+    line-height: 1.6;
+  }
+
+  @media (max-width: 720px) {
+    .proposal__meta {
+      flex-direction: column;
+      gap: 1rem;
+    }
+  }
+</style>
