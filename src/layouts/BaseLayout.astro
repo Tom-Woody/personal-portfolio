@@ -1,7 +1,10 @@
 ---
 import "../styles/global.css";
 
-const { title = "Tom Woodhouse - Freelance Web Developer & CRO Consultant" } = Astro.props;
+const {
+  title = "Tom Woodhouse - Websites, CRO & Automation",
+  description = "Websites, follow-up systems, and automations that turn interest into revenue.",
+} = Astro.props;
 ---
 
 <!doctype html>
@@ -9,10 +12,7 @@ const { title = "Tom Woodhouse - Freelance Web Developer & CRO Consultant" } = A
   <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <meta
-      name="description"
-      content="Freelance web developer and CRO consultant crafting high-converting websites with precision."
-    />
+    <meta name="description" content={description} />
     <title>{title}</title>
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />

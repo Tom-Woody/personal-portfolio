@@ -1,0 +1,215 @@
+---
+import SiteFooter from "./SiteFooter.astro";
+import SiteNav from "./SiteNav.astro";
+import type { ProductPageData } from "../data/products";
+
+type Props = {
+  product: ProductPageData;
+};
+
+const { product } = Astro.props as Props;
+const reviewHref = `/free-review?product=${product.slug}`;
+---
+
+<main class="page product-page">
+  <SiteNav />
+
+  <header class="product-hero">
+    <div class="product-hero__content">
+      <p class="eyebrow">{product.eyebrow}</p>
+      <h1>{product.title}</h1>
+      <p class="lead">{product.subtitle}</p>
+      <div class="hero__actions">
+        <a class="btn primary" href={reviewHref}>{product.primaryCta}</a>
+        <a class="btn ghost" href={product.secondaryHref}>{product.secondaryCta}</a>
+      </div>
+    </div>
+    <aside class="product-hero__aside">
+      <div class="product-hero-card">
+        <p class="product-hero-card__eyebrow">Fixed-scope offer</p>
+        <h2>{product.name}</h2>
+        <p class="product-hero-card__body">{product.summary.bestFor}</p>
+        <dl class="product-hero-card__stats">
+          <div>
+            <dt>Timeline</dt>
+            <dd>{product.summary.timeline}</dd>
+          </div>
+          <div>
+            <dt>Starting from</dt>
+            <dd>{product.summary.startingFrom}</dd>
+          </div>
+          <div>
+            <dt>Output</dt>
+            <dd>{product.summary.output}</dd>
+          </div>
+        </dl>
+      </div>
+    </aside>
+  </header>
+
+  <section class="product-summary-strip" aria-label="Product summary">
+    <article class="summary-item">
+      <span>Best for</span>
+      <p>{product.summary.bestFor}</p>
+    </article>
+    <article class="summary-item">
+      <span>Timeline</span>
+      <p>{product.summary.timeline}</p>
+    </article>
+    <article class="summary-item">
+      <span>Starting from</span>
+      <p>{product.summary.startingFrom}</p>
+    </article>
+    <article class="summary-item">
+      <span>Output</span>
+      <p>{product.summary.output}</p>
+    </article>
+  </section>
+
+  <section class="section product-section">
+    <div class="section__title section__title--wide">
+      <p class="eyebrow">Problem / pain</p>
+      <h2>{product.problem.title}</h2>
+      <p class="body">{product.problem.intro}</p>
+    </div>
+    <div class="pain-grid">
+      {product.problem.cards.map((card) => (
+        <article class="pain-card">
+          <h3>{card.title}</h3>
+          <p>{card.text}</p>
+        </article>
+      ))}
+    </div>
+  </section>
+
+  <section class="section product-section" id="included">
+    <div class="section__title section__title--wide">
+      <p class="eyebrow">What you get</p>
+      <h2>{product.deliverables.title}</h2>
+      <p class="body">{product.deliverables.intro}</p>
+    </div>
+    <div class="deliverables-grid">
+      {product.deliverables.cards.map((card) => (
+        <article class="deliverable-card">
+          <span class="deliverable-card__index"></span>
+          <h3>{card.title}</h3>
+          <p>{card.text}</p>
+        </article>
+      ))}
+    </div>
+  </section>
+
+  <section class="section product-section" id="how-it-works">
+    <div class="section__title section__title--wide">
+      <p class="eyebrow">How it works</p>
+      <h2>A short sprint with a clear handover.</h2>
+    </div>
+    <div class="process-timeline">
+      {product.process.map((item) => (
+        <article class="process-step">
+          <div class="process-step__rail" aria-hidden="true">
+            <span class="process-step__dot"></span>
+          </div>
+          <div class="process-step__content">
+            <span class="process-step__number">{item.step}</span>
+            <h3>{item.title}</h3>
+            <p>{item.text}</p>
+          </div>
+        </article>
+      ))}
+    </div>
+  </section>
+
+  <section class="section product-section" id="before-after">
+    <div class="section__title section__title--wide">
+      <p class="eyebrow">Before / after</p>
+      <h2>What changes once the work is in place.</h2>
+    </div>
+    {product.beforeAfter.exampleWorkflows ? (
+      <div class="workflow-tags" aria-label="Example workflows">
+        {product.beforeAfter.exampleWorkflows.map((item) => (
+          <span class="workflow-tag">{item}</span>
+        ))}
+      </div>
+    ) : null}
+    <div class="before-after-panel">
+      <article class="before-after-card">
+        <p class="eyebrow">Before</p>
+        <p>{product.beforeAfter.before}</p>
+      </article>
+      <article class="before-after-card before-after-card--accent">
+        <p class="eyebrow">After</p>
+        <p>{product.beforeAfter.after}</p>
+      </article>
+    </div>
+  </section>
+
+  <section class="section product-section">
+    <div class="scope-panel">
+      <div class="scope-panel__intro">
+        <p class="eyebrow">Designed to stay focused</p>
+        <h2>{product.scope.title}</h2>
+        <p class="body">{product.scope.intro}</p>
+      </div>
+      <div class="scope-panel__chips">
+        {product.scope.excluded.map((item) => (
+          <span class="scope-chip">{item}</span>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <section class="section product-section">
+    <div class="section__title section__title--wide">
+      <p class="eyebrow">Pricing</p>
+      <h2>Clear fixed-scope pricing for one well-defined outcome.</h2>
+    </div>
+    <div class="pricing-section">
+      <div class="pricing-card pricing-card--landing">
+        <p class="pricing-card__label">{product.pricing.label}</p>
+        <span class="pricing-card__price">{product.pricing.price}</span>
+        <p class="pricing-card__body">
+          A focused scope, clear handover, and an async-first starting point.
+        </p>
+        <div class="pricing-card__includes">
+          {product.pricing.includes.map((item) => (
+            <div class="pricing-include">
+              <span class="pricing-include__icon"></span>
+              <p>{item}</p>
+            </div>
+          ))}
+        </div>
+        <a class="btn primary" href={reviewHref}>{product.pricing.cta}</a>
+      </div>
+    </div>
+  </section>
+
+  <section class="section product-section">
+    <div class="section__title section__title--wide">
+      <p class="eyebrow">FAQ</p>
+      <h2>Questions that usually come up before we start.</h2>
+    </div>
+    <div class="faq-grid">
+      {product.faq.map((item) => (
+        <article class="faq-card faq-card--large">
+          <h3>{item.question}</h3>
+          <p>{item.answer}</p>
+        </article>
+      ))}
+    </div>
+  </section>
+
+  <section class="final-cta final-cta--landing">
+    <div>
+      <p class="eyebrow">Next step</p>
+      <h2>{product.finalCta.title}</h2>
+      <p class="body">{product.finalCta.text}</p>
+    </div>
+    <div class="hero__actions">
+      <a class="btn primary" href={reviewHref}>{product.finalCta.cta}</a>
+      <a class="btn ghost" href="/#products">Back to products</a>
+    </div>
+  </section>
+
+  <SiteFooter />
+</main>

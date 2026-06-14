@@ -1,0 +1,55 @@
+---
+import BaseLayout from "../layouts/BaseLayout.astro";
+import ReviewForm from "../components/ReviewForm.astro";
+import SiteFooter from "../components/SiteFooter.astro";
+import SiteNav from "../components/SiteNav.astro";
+---
+
+<BaseLayout
+  title="Get a Free Review | Tom Woodhouse"
+  description="Request a free review for your website, follow-up system, or automation bottleneck."
+>
+  <main class="page">
+    <SiteNav />
+
+    <section class="section review-page">
+      <div>
+        <p class="eyebrow">Free review</p>
+        <h1>Share the gap you want to fix.</h1>
+        <p class="lead">
+          Tell me where leads are slipping, admin is piling up, or the website journey feels weak,
+          and I will reply with the most useful next step.
+        </p>
+        <div class="review-page__notes">
+          <div class="service">
+            <h3>Best for async selling</h3>
+            <p>No phone number required. You can explain the issue clearly and I will reply with context.</p>
+          </div>
+          <div class="service">
+            <h3>Choose the right offer</h3>
+            <p>If you are unsure which product fits, use the form and I will point you to the best option.</p>
+          </div>
+        </div>
+      </div>
+      <ReviewForm selectedProduct="" />
+    </section>
+
+    <SiteFooter />
+  </main>
+
+  <script>
+    const params = new URLSearchParams(window.location.search);
+    const selectedProduct = params.get("product");
+    const select = document.querySelector("[data-product-select]");
+
+    if (selectedProduct && select instanceof HTMLSelectElement) {
+      const matchingOption = Array.from(select.options).find(
+        (option) => option.value === selectedProduct,
+      );
+
+      if (matchingOption) {
+        select.value = selectedProduct;
+      }
+    }
+  </script>
+</BaseLayout>

@@ -1,0 +1,11 @@
+---
+import BaseLayout from "../layouts/BaseLayout.astro";
+import ProductPage from "../components/ProductPage.astro";
+import { productPages } from "../data/products";
+
+const product = productPages["website-revenue-leak-audit"];
+---
+
+<BaseLayout title={product.metaTitle} description={product.metaDescription}>
+  <ProductPage product={product} />
+</BaseLayout>

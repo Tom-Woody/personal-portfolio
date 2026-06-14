@@ -1,0 +1,71 @@
+---
+import { productOptions } from "../data/products";
+
+type Props = {
+  className?: string;
+  formName?: string;
+  selectedProduct?: string;
+};
+
+const {
+  className = "contact__form",
+  formName = "free-review",
+  selectedProduct = "",
+} = Astro.props as Props;
+---
+
+<form
+  class={className}
+  name={formName}
+  method="POST"
+  action="/thanks"
+  data-netlify="true"
+  netlify-honeypot="bot-field"
+>
+  <input type="hidden" name="form-name" value={formName} />
+  <p class="visually-hidden">
+    <label>
+      Don't fill this out if you're human: <input name="bot-field" />
+    </label>
+  </p>
+  <label>
+    Name
+    <input type="text" name="name" placeholder="Your name" required />
+  </label>
+  <label>
+    Email
+    <input type="email" name="email" placeholder="you@company.com" required />
+  </label>
+  <label>
+    Business website
+    <input type="url" name="website" placeholder="https://yourbusiness.com" />
+  </label>
+  <label>
+    Which product are you interested in?
+    <select name="product" data-product-select required>
+      <option value="">Choose a service</option>
+      {productOptions.map((option) => (
+        <option value={option.value} selected={selectedProduct === option.value}>
+          {option.label}
+        </option>
+      ))}
+    </select>
+  </label>
+  <label>
+    What problem are you trying to fix?
+    <textarea
+      name="problem"
+      placeholder="Tell me what feels stuck, slow, or leaky right now."
+      required
+    ></textarea>
+  </label>
+  <label>
+    How do enquiries or processes currently work?
+    <textarea
+      name="current-process"
+      placeholder="Outline what happens today, even if it's manual or messy."
+      required
+    ></textarea>
+  </label>
+  <button class="btn primary" type="submit">Send review request</button>
+</form>

@@ -1,6 +1,9 @@
 ---
 import BaseLayout from "../layouts/BaseLayout.astro";
-import logo from "../assets/logo.png";
+import SiteFooter from "../components/SiteFooter.astro";
+import SiteNav from "../components/SiteNav.astro";
+import ReviewForm from "../components/ReviewForm.astro";
+import { productSummaries } from "../data/products";
 import tomPortrait from "../assets/tom-woodhouse.jpeg";
 import yumiNutrition from "../assets/yumi-nutrition.png";
 import fixMyBrokenMac from "../assets/fmbm.jpg";
@@ -9,8 +12,8 @@ import dabbaDrop from "../assets/Dabba.png";
 
 const stats = [
   { label: "Years of experience", value: "11" },
-  { label: "Focus", value: "CRO-led builds" },
-  { label: "Platforms", value: "Shopify + WordPress" },
+  { label: "Focus", value: "CRO + automation" },
+  { label: "Platforms", value: "Shopify, WordPress + ops" },
 ];
 
 const projects = [
@@ -42,75 +45,62 @@ const projects = [
 
 const services = [
   {
-    title: "Web Design",
-    detail: "Crafting visually stunning websites that captivate audiences and drive conversions.",
+    title: "Conversion-led websites",
+    detail: "Builds and redesigns that make your offer clearer, your journey smoother, and your site easier to trust.",
   },
   {
-    title: "Conversion Optimization",
-    detail: "Optimizing your website to turn more visitors into paying customers.",
+    title: "Lead follow-up systems",
+    detail: "Simple systems that capture, track, and chase enquiries so revenue does not rely on memory.",
   },
   {
-    title: "Responsive Development",
-    detail: "Building sites that adapt seamlessly across devices for a polished user experience.",
+    title: "AI automation sprints",
+    detail: "Focused workflow automations that cut repetitive admin without turning into a huge software project.",
   },
 ];
 
 const process = [
   {
     step: "01",
-    title: "Consultation",
-    detail: "In-depth discussions to clarify goals, audience, and conversion priorities.",
+    title: "Review the bottleneck",
+    detail: "We look at where the revenue leak, manual admin, or conversion friction is happening now.",
   },
   {
     step: "02",
-    title: "Choose your design",
-    detail: "Tailor-made packages crafted to align with your business and branding.",
+    title: "Choose the right sprint",
+    detail: "We scope the fastest productised offer or build sprint that will create a meaningful result.",
   },
   {
     step: "03",
-    title: "Development",
-    detail: "Full rebuilds or targeted upgrades with performance and usability in mind.",
+    title: "Build the fix",
+    detail: "I implement the pages, follow-up flow, or automation with clarity, performance, and usability in mind.",
   },
   {
     step: "04",
-    title: "Launch + optimize",
-    detail: "QA, deployment, and ongoing improvements to keep conversions climbing.",
+    title: "Launch and hand over",
+    detail: "Everything is tested, documented, and handed over cleanly so the result is usable from day one.",
   },
 ];
 
-const stack = ["Shopify", "Shopify Plus", "WordPress", "WooCommerce", "CRO", "UX", "Performance"];
+const stack = ["Shopify", "Shopify Plus", "WordPress", "WooCommerce", "CRO", "Automation", "Performance"];
 ---
 
-<BaseLayout title="Tom Woodhouse - Freelance Web Developer & CRO Consultant">
+<BaseLayout
+  title="Tom Woodhouse - Websites, Follow-Up Systems & Automation"
+  description="Websites, follow-up systems, and automations that turn interest into revenue."
+>
   <main class="page">
-    <nav class="nav">
-      <div class="logo">
-        <img src={logo.src} alt="Tom Woodhouse logo" width="160" height="48" loading="eager" />
-      </div>
-      <input id="nav-toggle" class="nav__toggle" type="checkbox" />
-      <label class="nav__toggle-btn" for="nav-toggle" aria-label="Toggle navigation">
-        <span></span>
-        <span></span>
-        <span></span>
-      </label>
-      <div class="nav__links">
-        <a href="#work">Work</a>
-        <a href="#services">Services</a>
-        <a href="#process">Process</a>
-        <a href="#contact" class="btn ghost small">Book a call</a>
-      </div>
-    </nav>
+    <SiteNav />
     <header class="hero">
       <div class="hero__content">
         <p class="eyebrow">Freelance Web Developer - CRO Consultant</p>
-        <h1>Crafting high-converting websites with precision.</h1>
+        <h1>Websites, follow-up systems, and automations that turn interest into revenue.</h1>
         <p class="lead">
-          I help brands turn more visitors into customers through thoughtful design, clean
-          development, and conversion-focused strategy.
+          I help small businesses fix the digital systems behind their website, enquiries,
+          follow-up, and admin so fewer leads slip through and less time is lost to manual work.
         </p>
         <div class="hero__actions">
-          <a class="btn primary" href="#contact">Book a call</a>
-          <a class="btn ghost" href="#work">View work</a>
+          <a class="btn primary" href="/free-review">Get a free review</a>
+          <a class="btn ghost" href="/#work">View work</a>
         </div>
         <div class="hero__stats">
           {stats.map((stat) => (
@@ -126,8 +116,8 @@ const stack = ["Shopify", "Shopify Plus", "WordPress", "WooCommerce", "CRO", "UX
           <img src={tomPortrait.src} alt="Portrait of Tom Woodhouse" loading="eager" />
         </div>
         <div class="card">
-          <p>Availability - Booking now</p>
-          <h3>New projects and optimization sprints</h3>
+          <p>Availability - Taking on new work</p>
+          <h3>Website projects, audits, and automation sprints</h3>
           <div class="pulse">
             <span></span>
             <span></span>
@@ -176,13 +166,34 @@ const stack = ["Shopify", "Shopify Plus", "WordPress", "WooCommerce", "CRO", "UX
       </div>
     </section>
 
+    <section class="section" id="products">
+      <div class="section__title">
+        <p class="eyebrow">Productised services</p>
+        <h2>Focused offers for the revenue leaks and admin bottlenecks that keep showing up.</h2>
+      </div>
+      <div class="grid">
+        {productSummaries.map((product) => (
+          <article class="project-card product-card">
+            <div class="product-card__meta">
+              <span class="chip">Fixed-scope offer</span>
+            </div>
+            <h3>{product.name}</h3>
+            <p>{product.description}</p>
+            <a class="btn ghost product-card__cta" href={product.href}>
+              {product.ctaLabel}
+            </a>
+          </article>
+        ))}
+      </div>
+    </section>
+
     <section class="section section--split" id="services">
       <div>
-        <p class="eyebrow">Services</p>
-        <h2>Design, development, and CRO to elevate your online presence.</h2>
+        <p class="eyebrow">Ways I can help</p>
+        <h2>Web, CRO, and automation support built around commercial outcomes.</h2>
         <p class="body">
-          I work with founders and teams who want a site that looks sharp, loads fast, and
-          converts consistently.
+          I work with founders and small teams who want the front end and back end of the customer
+          journey to work together more cleanly.
         </p>
       </div>
       <div class="stack">
@@ -236,56 +247,16 @@ const stack = ["Shopify", "Shopify Plus", "WordPress", "WooCommerce", "CRO", "UX
 
     <section class="section contact" id="contact">
       <div>
-        <p class="eyebrow">Ready to start?</p>
-        <h2>Ready to enhance your website?</h2>
+        <p class="eyebrow">Get a free review</p>
+        <h2>Share what feels leaky, manual, or underperforming.</h2>
         <p class="body">
-          Share your goals and I will outline the best next step for your site.
+          I will review the context and point you toward the most useful next step, without forcing
+          a phone call first.
         </p>
       </div>
-      <form
-        class="contact__form"
-        name="contact"
-        method="POST"
-        action="/thanks"
-        data-netlify="true"
-        netlify-honeypot="bot-field"
-      >
-        <input type="hidden" name="form-name" value="contact" />
-        <p class="visually-hidden">
-          <label>
-            Don't fill this out if you're human: <input name="bot-field" />
-          </label>
-        </p>
-        <label>
-          Name
-          <input type="text" name="name" placeholder="Your name" required />
-        </label>
-        <label>
-          Email
-          <input type="email" name="email" placeholder="you@company.com" required />
-        </label>
-        <label>
-          Project vision
-          <textarea
-            name="message"
-            placeholder="Tell me about the launch you're planning"
-            required
-          ></textarea>
-        </label>
-        <button class="btn primary" type="submit">Send inquiry</button>
-      </form>
+      <ReviewForm />
     </section>
 
-    <footer class="footer">
-      <div>
-        <h3>Tom Woodhouse</h3>
-        <p class="body">Freelance web developer and CRO consultant.</p>
-      </div>
-      <div class="footer__links">
-        <a href="mailto:tom@tom-woodhouse.com">tom@tom-woodhouse.com</a>
-        <a href="#work">Latest work</a>
-        <a href="#contact">Book a call</a>
-      </div>
-    </footer>
+    <SiteFooter />
   </main>
 </BaseLayout>
