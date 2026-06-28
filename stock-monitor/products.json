@@ -1,0 +1,27 @@
+[
+  {
+    "retailer": "Example Retailer",
+    "model": "Example portable air conditioner",
+    "url": "https://www.example.com/product/example-portable-air-conditioner",
+    "maxPrice": 400,
+    "positiveStockPhrases": [
+      "add to basket",
+      "add to trolley",
+      "available for delivery",
+      "click and collect"
+    ],
+    "negativeStockPhrases": [
+      "out of stock",
+      "sold out",
+      "unavailable",
+      "no longer available",
+      "preorder",
+      "pre-order"
+    ],
+    "selectors": {
+      "title": "h1",
+      "price": "[data-testid='price'], .price",
+      "stock": "[data-testid='stock'], .stock-status"
+    }
+  }
+]

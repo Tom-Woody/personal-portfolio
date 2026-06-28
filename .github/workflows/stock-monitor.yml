@@ -1,0 +1,44 @@
+name: Stock Monitor
+
+on:
+  schedule:
+    - cron: '17 */6 * * *'
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  check-stock:
+    runs-on: ubuntu-latest
+    defaults:
+      run:
+        working-directory: stock-monitor
+    steps:
+      - name: Check out repository
+        uses: actions/checkout@v4
+
+      - name: Set up Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+          cache: npm
+          
+      - name: Install dependencies
+        run: npm install
+
+      - name: Install Playwright Chromium
+        run: npx playwright install --with-deps chromium
+
+      - name: Check stock
+        run: npm run check
+        env:
+          PUSHOVER_USER_KEY: ${{ secrets.PUSHOVER_USER_KEY }}
+          PUSHOVER_API_TOKEN: ${{ secrets.PUSHOVER_API_TOKEN }}
+
+      - name: Upload state artifact
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: stock-monitor-state
+          path: stock-monitor/state.json
