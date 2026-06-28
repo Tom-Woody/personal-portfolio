@@ -84,6 +84,37 @@ For verbose per-product output:
 npm run check:debug
 ```
 
+## Amazon watchlist
+
+Use `amazon-products.json` for individual Amazon product pages you already know you want to watch. This checker does not survey Amazon search results and does not try to bypass CAPTCHAs or blocked pages. If Amazon serves a robot check or blocked response, the saved status will be `captcha` or `blocked`.
+
+Each Amazon item can use either a direct `url` or an `asin` plus optional `store` host:
+
+```json
+[
+  {
+    "name": "Example Amazon portable air conditioner",
+    "asin": "B000000000",
+    "store": "www.amazon.co.uk",
+    "maxPrice": 400
+  }
+]
+```
+
+Run it with:
+
+```bash
+npm run check:amazon
+```
+
+For verbose Amazon output:
+
+```bash
+npm run check:amazon:debug
+```
+
+Results are written to `amazon-state.json`.
+
 ## How availability is decided
 
 A product is treated as available only when all of these are true:

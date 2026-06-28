@@ -6,7 +6,9 @@
   "type": "module",
   "scripts": {
     "check": "tsx src/index.ts",
-    "check:debug": "DEBUG=1 tsx src/index.ts"
+    "check:debug": "DEBUG=1 tsx src/index.ts",
+    "check:amazon": "tsx src/check-amazon.ts",
+    "check:amazon:debug": "DEBUG=1 tsx src/check-amazon.ts"
   },
   "dependencies": {
     "tsx": "^4.20.3",
