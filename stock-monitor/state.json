@@ -1,1 +1,58 @@
-{}
+{
+  "Aircon Centre:Devola Compact Portable Air Conditioner Wi-Fi 7000 BTU White DVAC7K:https://www.airconcentre.co.uk/products/devola-portable-air-conditioner-with-wi-fi-and-2x-window-kits-7000-btu-cooling-white-dvac7k": {
+    "retailer": "Aircon Centre",
+    "model": "Devola Compact Portable Air Conditioner Wi-Fi 7000 BTU White DVAC7K",
+    "url": "https://www.airconcentre.co.uk/products/devola-portable-air-conditioner-with-wi-fi-and-2x-window-kits-7000-btu-cooling-white-dvac7k",
+    "checkedAt": "2026-06-28T08:58:05.020Z",
+    "title": "Devola Compact Portable Air Conditioner with Wi-Fi and 2x Window kits - 7000 BTU - Cooling - White - DVAC7K",
+    "visiblePrice": "£319.99 (inc. VAT)",
+    "parsedPrice": 319.99,
+    "stockStatus": "Out of Stock",
+    "hasPositiveStockPhrase": true,
+    "hasNegativeStockPhrase": true,
+    "available": false,
+    "reason": "negative stock phrase found"
+  },
+  "Aircon Centre:Devola Portable Air Conditioner Wi-Fi 9000 BTU White DVAC9K:https://www.airconcentre.co.uk/products/devola-portable-air-conditioner-with-wi-fi-and-2x-window-kits-9000-btu-cooling-white-dvac9k": {
+    "retailer": "Aircon Centre",
+    "model": "Devola Portable Air Conditioner Wi-Fi 9000 BTU White DVAC9K",
+    "url": "https://www.airconcentre.co.uk/products/devola-portable-air-conditioner-with-wi-fi-and-2x-window-kits-9000-btu-cooling-white-dvac9k",
+    "checkedAt": "2026-06-28T08:58:15.403Z",
+    "title": "Devola Compact Portable Air Conditioner with Wi-Fi and 2x Window kits - 9000 BTU - Cooling - White - DVAC9K",
+    "visiblePrice": "£359.99 (inc. VAT)",
+    "parsedPrice": 359.99,
+    "stockStatus": "Out of Stock",
+    "hasPositiveStockPhrase": true,
+    "hasNegativeStockPhrase": true,
+    "available": false,
+    "reason": "negative stock phrase found"
+  },
+  "Aircon Centre:Devola Portable Air Conditioner Wi-Fi 9000 BTU Black DVAC9KB:https://www.airconcentre.co.uk/products/devola-portable-air-conditioner-with-wi-fi-and-2x-window-kits-9000-btu-cooling-black-dvac9kb": {
+    "retailer": "Aircon Centre",
+    "model": "Devola Portable Air Conditioner Wi-Fi 9000 BTU Black DVAC9KB",
+    "url": "https://www.airconcentre.co.uk/products/devola-portable-air-conditioner-with-wi-fi-and-2x-window-kits-9000-btu-cooling-black-dvac9kb",
+    "checkedAt": "2026-06-28T08:58:24.807Z",
+    "title": "Devola Compact Portable Air Conditioner with Wi-Fi and 2x Window kits - 9000 BTU - Cooling - Black - DVAC9KB",
+    "visiblePrice": "£379.99 £359.99 (inc. VAT)",
+    "parsedPrice": 359.99,
+    "stockStatus": "Out of Stock",
+    "hasPositiveStockPhrase": true,
+    "hasNegativeStockPhrase": true,
+    "available": false,
+    "reason": "negative stock phrase found"
+  },
+  "Aircon Centre:Devola 9000 BTU Portable Air Conditioning Unit DVAC09CW:https://www.airconcentre.co.uk/products/devola-9000-btu-portable-air-conditioning-unit-dvac09cw": {
+    "retailer": "Aircon Centre",
+    "model": "Devola 9000 BTU Portable Air Conditioning Unit DVAC09CW",
+    "url": "https://www.airconcentre.co.uk/products/devola-9000-btu-portable-air-conditioning-unit-dvac09cw",
+    "checkedAt": "2026-06-28T08:58:35.544Z",
+    "title": "Devola Portable Air Conditioner with Wifi and Window Kit - 9000 BTU - White - DVAC09CW",
+    "visiblePrice": "£389.99 £359.99 (inc. VAT)",
+    "parsedPrice": 359.99,
+    "stockStatus": "Out of Stock",
+    "hasPositiveStockPhrase": true,
+    "hasNegativeStockPhrase": true,
+    "available": false,
+    "reason": "negative stock phrase found"
+  }
+}

@@ -1,27 +1,86 @@
 [
   {
-    "retailer": "Example Retailer",
-    "model": "Example portable air conditioner",
-    "url": "https://www.example.com/product/example-portable-air-conditioner",
-    "maxPrice": 400,
+    "retailer": "Aircon Centre",
+    "model": "Devola Compact Portable Air Conditioner Wi-Fi 7000 BTU White DVAC7K",
+    "url": "https://www.airconcentre.co.uk/products/devola-portable-air-conditioner-with-wi-fi-and-2x-window-kits-7000-btu-cooling-white-dvac7k",
+    "maxPrice": 1000,
     "positiveStockPhrases": [
       "add to basket",
-      "add to trolley",
-      "available for delivery",
-      "click and collect"
+      "in stock",
+      "available"
     ],
     "negativeStockPhrases": [
       "out of stock",
       "sold out",
-      "unavailable",
-      "no longer available",
-      "preorder",
-      "pre-order"
+      "unavailable"
     ],
     "selectors": {
       "title": "h1",
-      "price": "[data-testid='price'], .price",
-      "stock": "[data-testid='stock'], .stock-status"
+      "price": ".product-price.inc-vat",
+      "stock": ".product__badge"
+    }
+  },
+  {
+    "retailer": "Aircon Centre",
+    "model": "Devola Portable Air Conditioner Wi-Fi 9000 BTU White DVAC9K",
+    "url": "https://www.airconcentre.co.uk/products/devola-portable-air-conditioner-with-wi-fi-and-2x-window-kits-9000-btu-cooling-white-dvac9k",
+    "maxPrice": 1000,
+    "positiveStockPhrases": [
+      "add to basket",
+      "in stock",
+      "available"
+    ],
+    "negativeStockPhrases": [
+      "out of stock",
+      "sold out",
+      "unavailable"
+    ],
+    "selectors": {
+      "title": "h1",
+      "price": ".product-price.inc-vat",
+      "stock": ".product__badge"
+    }
+  },
+  {
+    "retailer": "Aircon Centre",
+    "model": "Devola Portable Air Conditioner Wi-Fi 9000 BTU Black DVAC9KB",
+    "url": "https://www.airconcentre.co.uk/products/devola-portable-air-conditioner-with-wi-fi-and-2x-window-kits-9000-btu-cooling-black-dvac9kb",
+    "maxPrice": 1000,
+    "positiveStockPhrases": [
+      "add to basket",
+      "in stock",
+      "available"
+    ],
+    "negativeStockPhrases": [
+      "out of stock",
+      "sold out",
+      "unavailable"
+    ],
+    "selectors": {
+      "title": "h1",
+      "price": ".product-price.inc-vat",
+      "stock": ".product__badge"
+    }
+  },
+  {
+    "retailer": "Aircon Centre",
+    "model": "Devola 9000 BTU Portable Air Conditioning Unit DVAC09CW",
+    "url": "https://www.airconcentre.co.uk/products/devola-9000-btu-portable-air-conditioning-unit-dvac09cw",
+    "maxPrice": 1000,
+    "positiveStockPhrases": [
+      "add to basket",
+      "in stock",
+      "available"
+    ],
+    "negativeStockPhrases": [
+      "out of stock",
+      "sold out",
+      "unavailable"
+    ],
+    "selectors": {
+      "title": "h1",
+      "price": ".product-price.inc-vat",
+      "stock": ".product__badge"
     }
   }
 ]

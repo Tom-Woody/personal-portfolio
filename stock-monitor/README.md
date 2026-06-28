@@ -30,6 +30,8 @@ Edit `products.json`. Each product must include:
 - `positiveStockPhrases`: Phrases that imply availability, for example `add to basket`, `add to trolley`, `available for delivery`, or `click and collect`.
 - `negativeStockPhrases`: Phrases that imply unavailability, for example `out of stock`, `sold out`, `unavailable`, `no longer available`, or `preorder`.
 - `selectors` (optional): CSS selectors for `title`, `price`, and `stock` text. Use these to make extraction more precise for a retailer page.
+- `postcode` (optional): Postcode value to reuse in retailer availability checks.
+- `setupSteps` (optional): Pre-check actions for pages that need a postcode or UI interaction before stock text appears.
 
 Example:
 
@@ -40,13 +42,19 @@ Example:
     "model": "Example portable air conditioner",
     "url": "https://www.example.com/product/example-portable-air-conditioner",
     "maxPrice": 400,
+    "postcode": "B60 2LY",
     "positiveStockPhrases": ["add to basket", "available for delivery"],
     "negativeStockPhrases": ["out of stock", "sold out", "preorder"],
     "selectors": {
       "title": "h1",
       "price": ".price",
       "stock": ".stock-status"
-    }
+    },
+    "setupSteps": [
+      { "action": "click", "selector": "[data-testid='delivery-options'] button" },
+      { "action": "fill", "selector": "input[name='postcode']", "value": "{{postcode}}" },
+      { "action": "press", "selector": "input[name='postcode']", "value": "Enter" }
+    ]
   }
 ]
 ```
@@ -58,9 +66,11 @@ Set these environment variables before running the monitor:
 ```bash
 export PUSHOVER_USER_KEY="your-pushover-user-key"
 export PUSHOVER_API_TOKEN="your-pushover-application-token"
+export DELIVERY_POSTCODE="B60 2LY"
 ```
 
 If either variable is missing, checks still run and `state.json` is updated, but alerts are skipped with a warning.
+If `DELIVERY_POSTCODE` is set, any `setupSteps` that use `{{postcode}}` will substitute that value automatically unless a product sets its own `postcode`.
 
 ## Run locally
 

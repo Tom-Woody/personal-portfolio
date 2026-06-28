@@ -10,14 +10,24 @@ interface ProductSelectors {
   stock?: string;
 }
 
+interface ProductSetupStep {
+  action: 'click' | 'fill' | 'press';
+  selector: string;
+  value?: string;
+  optional?: boolean;
+  timeoutMs?: number;
+}
+
 interface Product {
   retailer: string;
   model: string;
   url: string;
   maxPrice: number;
+  postcode?: string;
   positiveStockPhrases: string[];
   negativeStockPhrases: string[];
   selectors?: ProductSelectors;
+  setupSteps?: ProductSetupStep[];
 }
 
 interface ProductResult {
@@ -63,8 +73,11 @@ function includesAny(text: string, phrases: string[]): boolean {
 }
 
 function parsePrice(text: string): number | null {
-  const match = text.replace(/,/g, '').match(/(?:£|gbp\s*)\s*(\d+(?:\.\d{1,2})?)/i);
-  return match ? Number.parseFloat(match[1]) : null;
+  const matches = Array.from(text.replace(/,/g, '').matchAll(/(?:£|gbp\s*)\s*(\d+(?:\.\d{1,2})?)/gi))
+    .map((match) => Number.parseFloat(match[1]))
+    .filter((value) => Number.isFinite(value));
+  if (matches.length === 0) return null;
+  return Math.min(...matches);
 }
 
 async function textFromSelector(page: Page, selector?: string): Promise<string> {
@@ -74,10 +87,40 @@ async function textFromSelector(page: Page, selector?: string): Promise<string> 
   return normaliseText((await locator.innerText({ timeout: 3000 }).catch(() => '')) ?? '');
 }
 
+function resolveStepValue(value: string | undefined, product: Product): string {
+  const postcode = product.postcode || process.env.DELIVERY_POSTCODE || '';
+  return (value ?? '').replaceAll('{{postcode}}', postcode);
+}
+
+async function runSetupSteps(page: Page, product: Product): Promise<void> {
+  for (const step of product.setupSteps ?? []) {
+    const locator = page.locator(step.selector).first();
+    const timeout = step.timeoutMs ?? 8000;
+
+    try {
+      await locator.waitFor({ state: 'visible', timeout });
+
+      if (step.action === 'click') {
+        await locator.click({ timeout });
+      } else if (step.action === 'fill') {
+        await locator.fill(resolveStepValue(step.value, product), { timeout });
+      } else if (step.action === 'press') {
+        await locator.press(resolveStepValue(step.value, product), { timeout });
+      }
+    } catch (error) {
+      if (step.optional) continue;
+      throw new Error(`setup step failed for selector "${step.selector}": ${(error as Error).message}`);
+    }
+  }
+}
+
 async function checkProduct(page: Page, product: Product): Promise<ProductResult> {
   await page.goto(product.url, { waitUntil: 'domcontentloaded', timeout: 45000 });
   await page.waitForLoadState('networkidle', { timeout: 10000 }).catch(() => undefined);
   await page.waitForTimeout(1500 + Math.floor(Math.random() * 1500));
+  await runSetupSteps(page, product);
+  await page.waitForLoadState('networkidle', { timeout: 10000 }).catch(() => undefined);
+  await page.waitForTimeout(500);
 
   const pageText = normaliseText(await page.locator('body').innerText({ timeout: 5000 }).catch(() => ''));
   const selectedTitle = await textFromSelector(page, product.selectors?.title);
@@ -95,9 +138,13 @@ async function checkProduct(page: Page, product: Product): Promise<ProductResult
   const available = priceIsBelowMax && !hasNegativeStockPhrase && hasPositiveStockPhrase;
 
   let reason = 'available';
-  if (!priceIsBelowMax) reason = parsedPrice === null ? 'no price found' : `price £${parsedPrice.toFixed(2)} is not below £${product.maxPrice.toFixed(2)}`;
-  if (hasNegativeStockPhrase) reason = 'negative stock phrase found';
-  if (!hasPositiveStockPhrase) reason = 'positive stock phrase not found';
+  if (hasNegativeStockPhrase) {
+    reason = 'negative stock phrase found';
+  } else if (!hasPositiveStockPhrase) {
+    reason = 'positive stock phrase not found';
+  } else if (!priceIsBelowMax) {
+    reason = parsedPrice === null ? 'no price found' : `price £${parsedPrice.toFixed(2)} is not below £${product.maxPrice.toFixed(2)}`;
+  }
 
   return {
     retailer: product.retailer,
@@ -157,8 +204,7 @@ async function run(): Promise<void> {
     browser = await chromium.launch({ headless: true });
     const context = await browser.newContext({
       locale: 'en-GB',
-      timezoneId: 'Europe/London',
-      userAgent: 'Mozilla/5.0 (compatible; stock-monitor/1.0; +https://github.com/)'
+      timezoneId: 'Europe/London'
     });
 
     for (const product of products) {
