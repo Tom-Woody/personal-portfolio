@@ -1,0 +1,18 @@
+{
+  "name": "stock-monitor",
+  "version": "1.0.0",
+  "private": true,
+  "description": "Monitor UK portable air conditioner product pages and send Pushover alerts when products become available under a configured price.",
+  "type": "module",
+  "scripts": {
+    "check": "tsx src/index.ts",
+    "check:debug": "DEBUG=1 tsx src/index.ts"
+  },
+  "dependencies": {
+    "tsx": "^4.20.3",
+    "typescript": "^5.8.3",
+    "playwright": "^1.54.1",
+    "@types/node": "^20.19.0"
+  },
+  "devDependencies": {}
+}
